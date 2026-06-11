@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<title>NicValia Make up — Tienda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"></link>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Karla:wght@400;700;800&display=swap" rel="stylesheet"></link>
+<link rel="stylesheet" href="nicvalia.css"></link>
+</head>
+<body>
+
+<!-- ====== Top bar ====== -->
+<header class="topbar" data-screen-label="Header">
+  <div class="topbar-row">
+    <div class="topbar-side">
+      <button class="icon-btn" id="searchBtn" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+      </button>
+    </div>
+    <a class="brand" href="#inicio" aria-label="NicValia Make up">
+      <img class="brand-logo" src="images/logo-transparente.png" alt="NicValia Make up"></img>
+    </a>
+    <div class="topbar-side right">
+      <button class="icon-btn" id="cartBtn" aria-label="Carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8Z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
+        <span class="cart-badge empty" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+  <div class="search-wrap" id="searchWrap">
+    <input id="searchInput" type="text" placeholder="Busca tu producto… tintas, blush, base"></input>
+  </div>
+  <nav class="mainnav">
+    <ul>
+      <li><a href="#inicio" class="active">Inicio</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ====== Hero carrusel ====== -->
+<section class="hero" id="inicio" data-screen-label="Hero carrusel">
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-slide">
+      <div class="hero-copy">
+        <span class="hero-kicker">Viral beauty shop</span>
+        <h1 class="hero-title">Maquillaje en tendencia, directo a tu puerta</h1>
+        <p class="hero-sub">Los drops más cute de maquillaje y skincare, con envíos a toda Colombia.</p>
+        <a class="hero-cta" href="#catalogo">Ver catálogo</a>
+      </div>
+      <div class="hero-img-frame"><img src="images/set-dream-pink.png" alt="Set Dream Pink"></img></div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-copy">
+        <span class="hero-kicker">Nuevo drop</span>
+        <h1 class="hero-title">Labiales con corazón, literal</h1>
+        <p class="hero-sub">Tintas y labiales kawaii que enamoran desde la primera pasada.</p>
+        <a class="hero-cta" href="#catalogo">Quiero verlos</a>
+      </div>
+      <div class="hero-img-frame"><img src="images/labiales-corazon.webp" alt="Labiales corazón"></img></div>
+    </div>
+    <div class="hero-slide">
+      <div class="hero-copy">
+        <span class="hero-kicker">Skincare con brillo</span>
+        <h1 class="hero-title">Love Potion: tu nueva obsesión</h1>
+        <p class="hero-sub">Splash corporal con brilli brilli para llevar a todas partes.</p>
+        <a class="hero-cta" href="#catalogo">Comprar ahora</a>
+      </div>
+      <div class="hero-img-frame"><img src="images/love-potion.jpg" alt="Love Potion splash corporal"></img></div>
+    </div>
+  </div>
+  <button class="hero-arrow prev" id="heroPrev" aria-label="Anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"></path></svg>
+  </button>
+  <button class="hero-arrow next" id="heroNext" aria-label="Siguiente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"></path></svg>
+  </button>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
+
+<!-- ====== Categorías ====== -->
+<section class="section" id="categorias" data-screen-label="Categorías">
+  <div class="section-head">
+    <span class="section-kicker">Explora</span>
+    <h2 class="section-title">Nuestras categorías</h2>
+  </div>
+  <div class="cat-grid">
+    <button class="cat-card" data-cat="maquillaje">
+      <img src="images/tintas-kawaii.webp" alt="Maquillaje"></img>
+      <span class="cat-card-label">Maquillaje</span>
+    </button>
+    <button class="cat-card" data-cat="skincare">
+      <img src="images/love-potion.jpg" alt="Skincare"></img>
+      <span class="cat-card-label">Skincare</span>
+    </button>
+    <button class="cat-card" data-cat="accesorios">
+      <img src="images/lipstick-liner.webp" alt="Accesorios"></img>
+      <span class="cat-card-label">Accesorios</span>
+    </button>
+  </div>
+</section>
+
+<!-- ====== Catálogo ====== -->
+<section class="section" id="catalogo" data-screen-label="Catálogo">
+  <div class="section-head">
+    <span class="section-kicker">Favoritos</span>
+    <h2 class="section-title">Productos destacados</h2>
+  </div>
+  <div class="chip-row">
+    <button class="chip active" data-filter="todos">Todos</button>
+    <button class="chip" data-filter="maquillaje">Maquillaje</button>
+    <button class="chip" data-filter="skincare">Skincare</button>
+    <button class="chip" data-filter="accesorios">Accesorios</button>
+  </div>
+  <div class="product-grid">
+
+    <article class="product-card" data-id="set-dream-pink" data-cat="maquillaje" data-name="Set Dream Pink completo" data-price="79900">
+      <div class="product-media">
+        <img src="images/set-dream-pink.png" alt="Set Dream Pink"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Set Dream Pink completo</h3>
+        <span class="product-price">$79.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="bloom-gelei" data-cat="maquillaje" data-name="Bloom Gelei tinta en barra" data-price="32900">
+      <div class="product-media">
+        <img src="images/bloom-gelei.jpg" alt="Bloom Gelei"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Bloom Gelei tinta en barra</h3>
+        <span class="product-price">$32.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="love-potion" data-cat="skincare" data-name="Love Potion splash corporal" data-price="38500">
+      <div class="product-media">
+        <img src="images/love-potion.jpg" alt="Love Potion"></img>
+        <span class="product-tag">Skincare</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Love Potion splash corporal</h3>
+        <span class="product-price">$38.500</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="lipstick-liner" data-cat="maquillaje" data-name="Lipstick + liner 2 en 1" data-price="24900">
+      <div class="product-media">
+        <img src="images/lipstick-liner.webp" alt="Lipstick y liner 2 en 1"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Lipstick + liner 2 en 1</h3>
+        <span class="product-price">$24.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="tintas-kawaii" data-cat="maquillaje" data-name="Tintas de labios kawaii" data-price="19900">
+      <div class="product-media">
+        <img src="images/tintas-kawaii.webp" alt="Tintas kawaii"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Tintas de labios kawaii</h3>
+        <span class="product-price">$19.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="paleta-amour" data-cat="maquillaje" data-name="Paleta Amour blush + highlighter" data-price="36900">
+      <div class="product-media">
+        <img src="images/paleta-amour.webp" alt="Paleta Amour"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Paleta Amour blush + highlighter</h3>
+        <span class="product-price">$36.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="base-perfect-fit" data-cat="maquillaje" data-name="Base líquida Perfect Fit" data-price="42900">
+      <div class="product-media">
+        <img src="images/base-perfect-fit.webp" alt="Base Perfect Fit"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Base líquida Perfect Fit</h3>
+        <span class="product-price">$42.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card" data-id="labiales-corazon" data-cat="maquillaje" data-name="Labiales corazón mini kit" data-price="27900">
+      <div class="product-media">
+        <img src="images/labiales-corazon.webp" alt="Labiales corazón"></img>
+        <span class="product-tag">Maquillaje</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Labiales corazón mini kit</h3>
+        <span class="product-price">$27.900</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card slot-card" data-id="slot-1" data-cat="accesorios" data-name="Nuevo accesorio" data-price="0">
+      <div class="product-media">
+        <image-slot id="producto-extra-1" shape="rect" placeholder="Arrastra aquí la foto de un accesorio"></image-slot>
+        <span class="product-tag">Accesorios</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Nuevo accesorio</h3>
+        <span class="product-price">$00.000</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+    <article class="product-card slot-card" data-id="slot-2" data-cat="accesorios" data-name="Nuevo producto" data-price="0">
+      <div class="product-media">
+        <image-slot id="producto-extra-2" shape="rect" placeholder="Arrastra aquí otra foto de producto"></image-slot>
+        <span class="product-tag">Accesorios</span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Nuevo producto</h3>
+        <span class="product-price">$00.000</span>
+        <button class="add-btn">Agregar al carrito</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ====== Banner envíos ====== -->
+<div class="shipping-note" data-screen-label="Banner envíos">
+  <div class="shipping-note-inner">Envíos a toda Colombia ✧ Descubre el drop de la semana</div>
+</div>
+
+<!-- ====== Footer / contacto ====== -->
+<footer class="footer" id="contacto" data-screen-label="Contacto">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-logo" src="images/logo-transparente.png" alt="NicValia"></img>
+      <p>Maquillaje y skincare en tendencia.<br></br>Tu viral beauty shop favorita.</p>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://instagram.com/nicvaliamakeup_" target="_blank" rel="noopener">Instagram @nicvaliamakeup_</a></li>
+        <li>
+          <a class="wa-link" href="#contacto">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.5-.7c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.2 2.2-.4 3.8a12 12 0 0 0 4.6 4.5c1.8.9 2.7.8 3.6.7.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.8-.1Z"></path></svg>
+            Escríbenos por WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#catalogo">Catálogo completo</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#inicio">Volver al inicio</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">NicValia Make up ✧ Envíos a toda Colombia ✧ Prototipo de tienda</div>
+</footer>
+
+<!-- ====== Carrito ====== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" data-screen-label="Carrito">
+  <div class="cart-head">
+    <h3>Tu carrito</h3>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">$0</span></div>
+    <button class="checkout-btn" id="checkoutBtn">Finalizar pedido</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+<div id="tweaks-root"></div>
+
+<script src="image-slot.js"></script>
+<script src="nicvalia.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="nicvalia-tweaks.jsx"></script>
+
+</body>
+</html>
