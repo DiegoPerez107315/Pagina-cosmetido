@@ -36,9 +36,18 @@
   restart();
 
   /* ---------- Header compacto al hacer scroll ---------- */
+  // Histéresis: se compacta al pasar SCROLL_ON y solo vuelve a tamaño
+  // completo al subir por debajo de SCROLL_OFF. La zona muerta entre ambos
+  // (60px) es mayor que el cambio de altura del header (~46px), así no titila
+  // cerca del tope cuando encogerlo reacomoda el scroll.
   const topbar = document.querySelector(".topbar");
+  const SCROLL_ON = 90;
+  const SCROLL_OFF = 30;
   function onScroll() {
-    topbar.classList.toggle("scrolled", window.scrollY > 20);
+    const y = window.scrollY;
+    const compact = topbar.classList.contains("scrolled");
+    if (!compact && y > SCROLL_ON) topbar.classList.add("scrolled");
+    else if (compact && y < SCROLL_OFF) topbar.classList.remove("scrolled");
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
