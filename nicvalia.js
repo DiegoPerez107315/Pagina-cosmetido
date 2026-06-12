@@ -35,6 +35,14 @@
   goTo(0);
   restart();
 
+  /* ---------- Header compacto al hacer scroll ---------- */
+  const topbar = document.querySelector(".topbar");
+  function onScroll() {
+    topbar.classList.toggle("scrolled", window.scrollY > 20);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   /* ---------- Filtros de catálogo ---------- */
   const chips = Array.from(document.querySelectorAll(".chip"));
   const cards = Array.from(document.querySelectorAll(".product-card"));

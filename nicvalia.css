@@ -32,8 +32,15 @@ a { color: inherit; }
 
 /* ---------- Top bar ---------- */
 .topbar {
-  background: var(--bg);
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in srgb, var(--bg) 92%, white);
+  backdrop-filter: blur(8px);
   padding: 18px 28px 0;
+  transition: padding .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.topbar.scrolled {
+  padding-top: 8px;
+  box-shadow: 0 8px 28px #c2547720;
 }
 .topbar-row {
   display: grid;
@@ -77,8 +84,9 @@ a { color: inherit; }
   height: 78px;
   width: auto;
   filter: drop-shadow(0 4px 12px #e85c8f30);
-  transition: transform .3s ease;
+  transition: transform .3s ease, height .35s ease;
 }
+.topbar.scrolled .brand-logo { height: 48px; }
 .brand:hover .brand-logo { transform: scale(1.04); }
 
 /* variante: logo circular (primera versión) */
@@ -118,12 +126,14 @@ html[data-logo="circular"] .footer-logo {
 
 /* ---------- Nav ---------- */
 .mainnav {
-  position: sticky; top: 0; z-index: 50;
+  /* el header completo ahora es sticky, el nav viaja con él */
   background: color-mix(in srgb, var(--bg) 88%, white);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #f3cdd6;
   margin-top: 14px;
+  transition: margin-top .35s ease;
 }
+.topbar.scrolled .mainnav { margin-top: 8px; }
 .mainnav ul {
   list-style: none;
   display: flex; justify-content: center; gap: 8px;
