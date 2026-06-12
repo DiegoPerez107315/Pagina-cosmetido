@@ -20,7 +20,7 @@ function NvTweaks() {
   React.useEffect(() => {
     const circular = t.logoStyle === "circular";
     document.documentElement.setAttribute("data-logo", circular ? "circular" : "integrado");
-    const src = circular ? "images/logo-nicvalia.jpg" : "images/logo-transparente.png";
+    const src = circular ? "images/logo-nicvalia.jpg" : "images/logo-hd.png";
     document.querySelectorAll(".brand-logo, .footer-logo").forEach((img) => {
       if (!img.src.endsWith(src)) img.src = src;
     });
