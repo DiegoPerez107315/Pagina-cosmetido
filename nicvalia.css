@@ -35,22 +35,32 @@ a { color: inherit; }
   position: sticky; top: 0; z-index: 60;
   background: color-mix(in srgb, var(--bg) 92%, white);
   backdrop-filter: blur(8px);
-  padding: 18px 28px 0;
-  transition: padding .35s ease, box-shadow .35s ease, background .35s ease;
+  padding: 8px 28px;
+  transition: padding .4s cubic-bezier(.4, 0, .2, 1), box-shadow .4s ease, background .4s ease;
 }
 .topbar.scrolled {
-  padding-top: 8px;
+  padding: 2px 28px;
   box-shadow: 0 8px 28px #c2547720;
 }
-.topbar-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+
+/* Header en una sola fila: buscador y logo a la izquierda; menú y carrito a la
+   derecha. Solo se compacta el tamaño al hacer scroll (transición suave). */
+.topbar-inner {
+  display: flex; align-items: center; gap: 14px;
+  max-width: 1200px; margin: 0 auto;
+  min-height: 78px;
+  transition: min-height .4s cubic-bezier(.4, 0, .2, 1);
 }
-.topbar-side { display: flex; gap: 10px; }
-.topbar-side.right { justify-content: flex-end; }
+.topbar.scrolled .topbar-inner { min-height: 48px; }
+
+/* Espaciadores que intercambian su tamaño para deslizar el menú:
+   tope   → izq = 0, der = crece  ⇒ menú pegado al logo;
+   scroll → izq = crece, der = 0  ⇒ menú se desliza junto al carrito. */
+.nav-spacer { flex: 0 1 0; }
+.nav-spacer-left  { flex-grow: 0; transition: flex-grow .4s cubic-bezier(.4, 0, .2, 1); }
+.nav-spacer-right { flex-grow: 1; transition: flex-grow .4s cubic-bezier(.4, 0, .2, 1); }
+.topbar.scrolled .nav-spacer-left  { flex-grow: 1; }
+.topbar.scrolled .nav-spacer-right { flex-grow: 0; }
 
 .icon-btn {
   width: 44px; height: 44px;
@@ -84,7 +94,7 @@ a { color: inherit; }
   height: 78px;
   width: auto;
   filter: drop-shadow(0 4px 12px #e85c8f30);
-  transition: transform .3s ease, height .35s ease;
+  transition: transform .3s ease, height .4s cubic-bezier(.4, 0, .2, 1);
 }
 .topbar.scrolled .brand-logo { height: 48px; }
 .brand:hover .brand-logo { transform: scale(1.04); }
@@ -125,20 +135,9 @@ html[data-logo="circular"] .footer-logo {
 .search-wrap input:focus { border-color: var(--accent); }
 
 /* ---------- Nav ---------- */
-.mainnav {
-  /* el header completo ahora es sticky, el nav viaja con él */
-  background: color-mix(in srgb, var(--bg) 88%, white);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #f3cdd6;
-  margin-top: 14px;
-  transition: margin-top .35s ease;
-}
-.topbar.scrolled .mainnav { margin-top: 8px; }
 .mainnav ul {
   list-style: none;
-  display: flex; justify-content: center; gap: 8px;
-  max-width: 1200px; margin: 0 auto;
-  padding: 6px 16px;
+  display: flex; gap: 8px;
 }
 .mainnav a {
   display: block;
@@ -537,6 +536,15 @@ html[data-logo="circular"] .footer-logo {
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
 /* ---------- Responsive ---------- */
+/* En pantallas chicas el menú baja a una segunda fila (no cabe en una sola).
+   Se ocultan los espaciadores, así que el deslizamiento se desactiva. */
+@media (max-width: 720px) {
+  .topbar-inner { flex-wrap: wrap; row-gap: 8px; }
+  .nav-spacer { display: none; }
+  .brand { margin-right: auto; }
+  .mainnav { order: 5; flex-basis: 100%; }
+  .mainnav ul { justify-content: center; }
+}
 @media (max-width: 900px) {
   .hero-slide { grid-template-columns: 1fr; padding: 40px 24px 70px; gap: 24px; }
   .hero-copy { justify-self: start; order: 2; }

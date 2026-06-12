@@ -13,32 +13,30 @@
 
 <!-- ====== Top bar ====== -->
 <header class="topbar" data-screen-label="Header">
-  <div class="topbar-row">
-    <div class="topbar-side">
-      <button class="icon-btn" id="searchBtn" aria-label="Buscar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
-      </button>
-    </div>
+  <div class="topbar-inner">
+    <button class="icon-btn" id="searchBtn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+    </button>
     <a class="brand" href="#inicio" aria-label="NicValia Make up">
-      <img class="brand-logo" src="images/logo-hd.png" alt="NicValia Make up"></img>
+      <img class="brand-logo" src="images/logo-hd.png" alt="NicValia Make up">
     </a>
-    <div class="topbar-side right">
-      <button class="icon-btn" id="cartBtn" aria-label="Carrito">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8Z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
-        <span class="cart-badge empty" id="cartBadge">0</span>
-      </button>
-    </div>
+    <span class="nav-spacer nav-spacer-left" aria-hidden="true"></span>
+    <nav class="mainnav">
+      <ul>
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <span class="nav-spacer nav-spacer-right" aria-hidden="true"></span>
+    <button class="icon-btn" id="cartBtn" aria-label="Carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8Z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
+      <span class="cart-badge empty" id="cartBadge">0</span>
+    </button>
   </div>
   <div class="search-wrap" id="searchWrap">
-    <input id="searchInput" type="text" placeholder="Busca tu producto… tintas, blush, base"></input>
+    <input id="searchInput" type="text" placeholder="Busca tu producto… tintas, blush, base">
   </div>
-  <nav class="mainnav">
-    <ul>
-      <li><a href="#inicio" class="active">Inicio</a></li>
-      <li><a href="#catalogo">Catálogo</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
 </header>
 
 <!-- ====== Hero carrusel ====== -->

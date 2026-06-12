@@ -36,10 +36,9 @@
   restart();
 
   /* ---------- Header compacto al hacer scroll ---------- */
-  // Histéresis: se compacta al pasar SCROLL_ON y solo vuelve a tamaño
-  // completo al subir por debajo de SCROLL_OFF. La zona muerta entre ambos
-  // (60px) es mayor que el cambio de altura del header (~46px), así no titila
-  // cerca del tope cuando encogerlo reacomoda el scroll.
+  // Histéresis: se compacta al pasar SCROLL_ON y solo vuelve a tamaño completo
+  // al subir por debajo de SCROLL_OFF. La zona muerta evita el titileo cerca
+  // del tope cuando el header cambia de tamaño y reacomoda el scroll.
   const topbar = document.querySelector(".topbar");
   const SCROLL_ON = 90;
   const SCROLL_OFF = 30;
