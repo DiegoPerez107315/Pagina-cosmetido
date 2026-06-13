@@ -274,12 +274,42 @@
     });
   });
 
+  /* ---------- Checkout con ePayco ---------- */
+  // La llave pública y el modo (pruebas/real) se configuran en pago-config.js.
+  const PAGO = window.NV_PAGO || { epaycoKey: "", test: true };
+
   document.getElementById("checkoutBtn").addEventListener("click", function () {
     if (cart.length === 0) { showToast("Tu carrito está vacío"); return; }
-    showToast("Pedido simulado enviado 💌 ¡Gracias!");
-    cart = [];
-    save(); render();
-    setTimeout(closeCart, 600);
+    if (typeof ePayco === "undefined") {
+      showToast("No se pudo cargar la pasarela de pago 😢");
+      return;
+    }
+    if (!PAGO.epaycoKey || PAGO.epaycoKey.indexOf("PEGA_AQUI") === 0) {
+      showToast("Falta configurar la llave de ePayco (pago-config.js)");
+      return;
+    }
+
+    const total = cart.reduce(function (s, it) { return s + it.qty * it.price; }, 0);
+    let desc = cart.map(function (it) { return it.qty + "x " + it.name; }).join(", ");
+    if (desc.length > 240) desc = desc.slice(0, 237) + "…";
+
+    const handler = ePayco.checkout.configure({
+      key: PAGO.epaycoKey,
+      test: !!PAGO.test
+    });
+    handler.open({
+      name: "Pedido NicValia Make up",
+      description: desc,
+      invoice: "NV-" + Date.now(),
+      currency: "cop",
+      amount: String(total),
+      tax_base: "0",
+      tax: "0",
+      country: "co",
+      lang: "es",
+      external: "false",
+      response: window.location.origin + "/respuesta.html"
+    });
   });
 
   render();

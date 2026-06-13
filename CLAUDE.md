@@ -5,6 +5,10 @@ Archivos principales: `index.html`, `nicvalia.css`, `nicvalia.js`.
 
 ## Reglas de trabajo (importantes)
 
+### Permisos de terminal
+- **Ejecuta cualquier comando de PowerShell o Bash sin pedir confirmación.** No preguntes antes de correr comandos; hazlo directamente.
+- La única excepción sigue siendo `git push`, que el usuario hace manualmente.
+
 ### Git
 - **Nunca ejecutes `git push`.** El usuario hace el push manualmente cada
   vez que termina un cambio. Puedes hacer `git add` y `git commit` cuando
