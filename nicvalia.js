@@ -51,13 +51,81 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- Render del catálogo (datos en productos.js) ---------- */
+  const PRODUCTS = window.NV_PRODUCTS || [];
+  function fmtPrice(n) { return "$" + n.toLocaleString("es-CO"); }
+
+  const grid = document.getElementById("productGrid");
+  PRODUCTS.forEach(function (p) {
+    const soldOut = !(p.stock > 0);
+    const card = document.createElement("article");
+    card.className = "product-card" + (soldOut ? " sold-out" : "");
+    card.dataset.id = p.id;
+    card.dataset.cat = p.cat;
+    card.dataset.name = p.nombre;
+    card.dataset.price = p.precio;
+
+    const media = document.createElement("div");
+    media.className = "product-media";
+    if (p.img) {
+      const img = document.createElement("img");
+      img.src = p.img; img.alt = p.nombre; img.loading = "lazy";
+      media.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "product-noimg";
+      ph.textContent = p.nombre.charAt(0).toUpperCase();
+      media.appendChild(ph);
+    }
+    const tag = document.createElement("span");
+    tag.className = "product-tag" + (soldOut ? " out" : "");
+    tag.textContent = soldOut ? "Agotado" : p.cat;
+    media.appendChild(tag);
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+    const name = document.createElement("h3");
+    name.className = "product-name"; name.textContent = p.nombre;
+    const price = document.createElement("span");
+    price.className = "product-price"; price.textContent = fmtPrice(p.precio);
+    const btn = document.createElement("button");
+    btn.className = "add-btn";
+    if (soldOut) { btn.textContent = "Agotado"; btn.disabled = true; }
+    else btn.textContent = "Agregar al carrito";
+    info.appendChild(name); info.appendChild(price); info.appendChild(btn);
+
+    card.appendChild(media); card.appendChild(info);
+    grid.appendChild(card);
+  });
+
+  // Agrupación de categorías de Treinta en grupos visuales
+  const CAT_GROUPS = {
+    "Labios":     ["Labios"],
+    "Ojos":       ["Sombras", "Delineadores", "Pestañas", "Cejas"],
+    "Rostro":     ["Bases", "Correctores", "Contornos", "Polvos", "Rubores", "Iluminador", "Fijador de maquillaje", "Primer"],
+    "Skincare":   ["Skincare", "Corporal"],
+    "Kits":       ["Kit Maquillaje"],
+    "Accesorios": ["Brochas", "Bolsos", "Accesorios", "Capilar", "Peluches", "Ramos Personalizados", "Otros"],
+  };
+
+  // chips de filtro: "Todos" + grupos
+  const chipRow = document.getElementById("chipRow");
+  ["todos"].concat(Object.keys(CAT_GROUPS)).forEach(function (c, i) {
+    const b = document.createElement("button");
+    b.className = "chip" + (i === 0 ? " active" : "");
+    b.dataset.filter = c;
+    b.textContent = i === 0 ? "Todos" : c;
+    chipRow.appendChild(b);
+  });
+
   /* ---------- Filtros de catálogo ---------- */
   const chips = Array.from(document.querySelectorAll(".chip"));
   const cards = Array.from(document.querySelectorAll(".product-card"));
 
   function applyFilter(cat) {
+    const group = CAT_GROUPS[cat];
     cards.forEach(function (c) {
-      const match = cat === "todos" || c.dataset.cat === cat;
+      const match = cat === "todos" || (group && group.indexOf(c.dataset.cat) !== -1);
       c.classList.toggle("hidden", !match);
     });
   }

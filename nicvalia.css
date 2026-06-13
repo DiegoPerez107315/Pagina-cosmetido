@@ -385,6 +385,27 @@ html[data-logo="circular"] .footer-logo {
 .slot-card .product-media { display: grid; }
 .slot-card image-slot { width: 100%; height: 100%; }
 
+/* productos agotados */
+.product-card.sold-out .product-media img { filter: grayscale(.6); opacity: .8; }
+.product-tag.out { background: #54323ed9; color: #fff; }
+.product-info .add-btn:disabled {
+  border-color: #e6c5cf;
+  color: var(--ink-soft);
+  opacity: .6;
+  cursor: default;
+}
+.product-info .add-btn:disabled:hover { background: transparent; color: var(--ink-soft); }
+
+/* productos sin foto: placeholder con inicial */
+.product-noimg {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
 /* ---------- Banner envíos ---------- */
 .shipping-note {
   margin: 72px auto 0;
